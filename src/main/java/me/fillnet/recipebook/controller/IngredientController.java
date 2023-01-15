@@ -19,7 +19,7 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @PostMapping
+    @PutMapping
     public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
         return this.ingredientService.addNewIngredient(ingredient);
     }
@@ -28,7 +28,7 @@ public class IngredientController {
         return this.ingredientService.getAll();
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public Ingredient updateIngredient(@PathVariable("id") String id, @RequestBody Ingredient ingredient) {
        return this.ingredientService.updateIngredient(id, ingredient);
     }
