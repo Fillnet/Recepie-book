@@ -20,13 +20,13 @@ public class RecipeController {
         return this.recipeService.getAllRecipe();
     }
 
-    @PostMapping
+    @PutMapping
     public Recipe addNewRecipe(@RequestBody Recipe recipe) {
         return this.recipeService.addNewRecipe(recipe);
     }
 
     @PutMapping("/{id}")
-    public Recipe editRecipe(@PathVariable("/id") String id, Recipe recipe) {
+    public Recipe editRecipe(@PathVariable("id") String id, Recipe recipe) {
         return this.recipeService.editRecipe(id, recipe);
     }
 

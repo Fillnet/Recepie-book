@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>me.fillnet</groupId>
-    <artifactId>Recepie-book</artifactId>
+    <artifactId>Recipe-book</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Recepie-book</name>
     <description>Recepie-book</description>
