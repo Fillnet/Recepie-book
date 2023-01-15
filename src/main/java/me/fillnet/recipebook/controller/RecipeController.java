@@ -20,7 +20,7 @@ public class RecipeController {
         return this.recipeService.getAllRecipe();
     }
 
-    @PutMapping
+    @PutMapping//ошибка была здесь был @PostMaping
     public Recipe addNewRecipe(@RequestBody Recipe recipe) {
         return this.recipeService.addNewRecipe(recipe);
     }
