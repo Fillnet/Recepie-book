@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-//@AllArgsConstructor
-//@Getter
-//@Setter
 @RestController
 @RequestMapping("/ingredient")
 
@@ -19,7 +16,7 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @PutMapping
+    @PostMapping
     public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
         return this.ingredientService.addNewIngredient(ingredient);
     }

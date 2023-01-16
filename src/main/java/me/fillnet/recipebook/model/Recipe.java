@@ -1,16 +1,14 @@
 package me.fillnet.recipebook.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 @AllArgsConstructor
-@Setter
-@Getter
+@Data
 public class Recipe {
     private String name;
-    public int timeCooking;
+    private int timeCooking;
     private List<Ingredient> ingredients;
     private List<String> step;
 }

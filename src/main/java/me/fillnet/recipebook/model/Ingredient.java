@@ -1,14 +1,12 @@
 package me.fillnet.recipebook.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class Ingredient {
     public String title;
-    public int totalIngredients;
+    private int totalIngredients;
     private final String unit;
 }

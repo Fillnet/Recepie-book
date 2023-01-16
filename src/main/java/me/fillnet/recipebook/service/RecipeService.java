@@ -31,7 +31,7 @@ public class RecipeService {
             throw new RuntimeException("Нет такого рецепта");
         } serviceRecipe.setName(recipe.getName());
         serviceRecipe.setIngredients(recipe.getIngredients());
-        serviceRecipe.setTimeCooking(recipe.timeCooking);
+        serviceRecipe.setTimeCooking(recipe.getTimeCooking());
         serviceRecipe.setStep(recipe.getStep());
         return serviceRecipe;
     }

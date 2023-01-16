@@ -15,12 +15,12 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @PostMapping
+    @GetMapping
     public Collection<Recipe> getAllRecipe() {
         return this.recipeService.getAllRecipe();
     }
 
-    @PutMapping//ошибка была здесь был @PostMaping
+    @PostMapping
     public Recipe addNewRecipe(@RequestBody Recipe recipe) {
         return this.recipeService.addNewRecipe(recipe);
     }
