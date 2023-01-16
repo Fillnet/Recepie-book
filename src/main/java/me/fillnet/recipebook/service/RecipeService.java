@@ -10,6 +10,7 @@ import java.util.Map;
 @Service
 public class RecipeService {
     private final Map<String, Recipe> recipes = new HashMap<>();
+
     public Collection<Recipe> getAllRecipe() {
         return recipes.values();
     }
@@ -23,13 +24,12 @@ public class RecipeService {
         return recipe;
     }
 
-//    Recipe getRecipeById(int idRecipe);
-
     public Recipe editRecipe(String id, Recipe recipe) {
         Recipe serviceRecipe = recipes.get(id);
         if (serviceRecipe == null) {
             throw new RuntimeException("Нет такого рецепта");
-        } serviceRecipe.setName(recipe.getName());
+        }
+        serviceRecipe.setName(recipe.getName());
         serviceRecipe.setIngredients(recipe.getIngredients());
         serviceRecipe.setTimeCooking(recipe.getTimeCooking());
         serviceRecipe.setStep(recipe.getStep());

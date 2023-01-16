@@ -10,7 +10,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/recipe")
-@Tag(name = ("Рецепт"),description = "операции с рецептами")
+@Tag(name = ("Рецепт"), description = "операции с рецептами")
 public class RecipeController {
     private final RecipeService recipeService;
 
@@ -45,7 +45,8 @@ public class RecipeController {
         return this.recipeService.editRecipe(id, recipe);
     }
 
-    @DeleteMapping("/{id}")@Operation(
+    @DeleteMapping("/{id}")
+    @Operation(
             summary = "Удаление рецепта",
             description = "удаление рецепта по ID"
     )

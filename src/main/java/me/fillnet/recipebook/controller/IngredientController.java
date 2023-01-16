@@ -10,7 +10,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/ingredient")
-@Tag(name = ("Ингридиенты"),description = "оперции с ингридиентами")
+@Tag(name = ("Ингридиенты"), description = "оперции с ингридиентами")
 public class IngredientController {
     private final IngredientService ingredientService;
 
@@ -26,6 +26,7 @@ public class IngredientController {
     public Collection<Ingredient> getAll() {
         return this.ingredientService.getAll();
     }
+
     @PutMapping
     @Operation(
             summary = "Добавление ингридиента",
@@ -41,7 +42,7 @@ public class IngredientController {
             description = "обновление ингридиента по ID"
     )
     public Ingredient updateIngredient(@PathVariable("id") String id, @RequestBody Ingredient ingredient) {
-       return this.ingredientService.updateIngredient(id, ingredient);
+        return this.ingredientService.updateIngredient(id, ingredient);
     }
 
     @DeleteMapping("/{id}")
