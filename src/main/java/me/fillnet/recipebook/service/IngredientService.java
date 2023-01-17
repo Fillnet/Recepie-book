@@ -1,6 +1,7 @@
 package me.fillnet.recipebook.service;
 
 import me.fillnet.recipebook.model.Ingredient;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -26,7 +27,7 @@ public class IngredientService {
 
     public Ingredient updateIngredient(String id, Ingredient ingredient) {
         Ingredient serviceIngredient = ingredients.get(id);
-        if (serviceIngredient == null) {
+        if (serviceIngredient == null)  {
             throw new RuntimeException("Нет такого ингредиента");
         }
         serviceIngredient.setTitle(ingredient.getTitle());

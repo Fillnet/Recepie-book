@@ -27,7 +27,7 @@ public class RecipeController {
         return this.recipeService.getAllRecipe();
     }
 
-    @PutMapping
+    @PostMapping
     @Operation(
             summary = "Добавление нового рецепта",
             description = "добавление нового рецепта"
@@ -36,7 +36,7 @@ public class RecipeController {
         return this.recipeService.addNewRecipe(recipe);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     @Operation(
             summary = "Изменение рецепта",
             description = "изменение рецепта по ID"

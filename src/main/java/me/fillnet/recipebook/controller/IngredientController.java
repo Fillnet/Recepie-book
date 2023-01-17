@@ -27,7 +27,7 @@ public class IngredientController {
         return this.ingredientService.getAll();
     }
 
-    @PutMapping
+    @PostMapping
     @Operation(
             summary = "Добавление ингридиента",
             description = "добавление ингридиента"
@@ -36,7 +36,7 @@ public class IngredientController {
         return this.ingredientService.addNewIngredient(ingredient);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     @Operation(
             summary = "Обновление ингридиента",
             description = "обновление ингридиента по ID"
