@@ -1,41 +1,43 @@
 package me.fillnet.recipebook.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.fillnet.recipebook.model.Ingredient;
-import me.fillnet.recipebook.model.Recipe;
-import me.fillnet.recipebook.service.FileServiceRecipe;
+import me.fillnet.recipebook.service.FileServiceIngredients;
 import me.fillnet.recipebook.service.IngredientService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class IngredientServiceImpl implements IngredientService {
-    private final Map<String, Ingredient> ingredients = new HashMap<>();
+    private FileServiceIngredients fileServiceIngredient;
 
-    public Collection<Ingredient> getAll() {
-        return ingredients.values();
+    private HashMap<Long, Ingredient> ingredients = new HashMap<>();
+
+    public IngredientServiceImpl(FileServiceIngredients fileServiceIngredients) {
+        this.fileServiceIngredient = fileServiceIngredients;
     }
-    private final
-
     @PostConstruct
     private void init() {
         readFromFile();
     }
-
-    private void readFromFile() {
+    public void readFromFile() {
     }
-
+    @Override
+    public Collection<Ingredient> getAllIngredient() {
+        return ingredients.values();
+    }
     @Override
     public Ingredient addNewIngredient(Ingredient ingredient) {
         if (ingredients.containsKey(ingredient.getTitle())) {
             throw new RuntimeException("такой ингридиент уже есть");
         } else {
-            ingredients.put(ingredient.getTitle(), ingredient);
+            ingredients.put(Long.valueOf(ingredient.getTitle()),ingredient);
+            saveToFile();
         }
         return ingredient;
     }
@@ -48,6 +50,7 @@ public class IngredientServiceImpl implements IngredientService {
         }
         serviceIngredient.setTitle(ingredient.getTitle());
         serviceIngredient.setTotalIngredients(ingredient.getTotalIngredients());
+        saveToFile();
         return serviceIngredient;
     }
 
@@ -56,15 +59,27 @@ public class IngredientServiceImpl implements IngredientService {
         return ingredients.remove(id);
     }
     @Override
-
-    private void saveToFile() {
+    public void saveToFile() {
         try {
             String json = new ObjectMapper().writeValueAsString(ingredients);
-            FileServiceRecipe fileServiceIngredient;
             fileServiceIngredient.saveToFile(json);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
+//        @Override
+// не могу понять что здесь не так, без этого кода запускается, с ним нет
+//        public void readFromFile() {
+//        String json = fileServiceIngredient.readFromFile();
+//        try {
+//            ingredients = new ObjectMapper().readValue(json, new TypeReference<HashMap<Long, Ingredient>>() {
+//
+//            });
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//
+//    }
 }
 

@@ -24,7 +24,7 @@ public class IngredientController {
             description = "получение списка ингридиентов"
     )
     public Collection<Ingredient> getAll() {
-        return this.ingredientService.getAll();
+        return this.ingredientService.getAllIngredient();
     }
 
     @PostMapping
