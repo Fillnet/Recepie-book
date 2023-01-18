@@ -3,7 +3,7 @@ package me.fillnet.recipebook.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.fillnet.recipebook.model.Ingredient;
-import me.fillnet.recipebook.service.IngredientService;
+import me.fillnet.recipebook.service.impl.IngredientServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -12,9 +12,9 @@ import java.util.Collection;
 @RequestMapping("/ingredient")
 @Tag(name = ("Ингридиенты"), description = "оперции с ингридиентами")
 public class IngredientController {
-    private final IngredientService ingredientService;
+    private final IngredientServiceImpl ingredientService;
 
-    public IngredientController(IngredientService ingredientService) {
+    public IngredientController(IngredientServiceImpl ingredientService) {
         this.ingredientService = ingredientService;
     }
 
