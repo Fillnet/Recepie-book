@@ -5,18 +5,16 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.fillnet.recipebook.model.Recipe;
 import me.fillnet.recipebook.service.RecipeService;
+import me.fillnet.recipebook.service.exception.ExceptionWithChekingRecipes;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
     private FileServiceRecipeImpl fileServiceRecipe;
-    private Map<Long, Recipe> recipes = new HashMap<>();
+    private Map<String, Recipe> recipes = new HashMap<String, Recipe>();
     private Long counter = 0L;
 
 
@@ -36,21 +34,21 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe addNewRecipe(Recipe recipe) {
+    public Recipe addNewRecipe(Recipe recipe) throws ExceptionWithChekingRecipes {
         if (recipes.containsKey(counter)) {
-            throw new RuntimeException("Такой рецепт уже есть");
+            throw new ExceptionWithChekingRecipes("Такой рецепт уже есть");
         } else {
-            recipes.put(this.counter++, recipe);
+            recipes.put(String.valueOf(this.counter++), recipe);
             saveToFile();
         }
         return recipe;
     }
 
     @Override
-    public Recipe editRecipe(String id, Recipe recipe) {
+    public Recipe editRecipe(String id, Recipe recipe) throws ExceptionWithChekingRecipes {
         Recipe serviceRecipe = recipes.get(id);
         if (serviceRecipe == null) {
-            throw new RuntimeException("Нет такого рецепта");
+            throw new ExceptionWithChekingRecipes("Нет такого рецепта");
         }
         serviceRecipe.setName(recipe.getName());
         serviceRecipe.setIngredients(recipe.getIngredients());
@@ -70,28 +68,24 @@ public class RecipeServiceImpl implements RecipeService {
             String json = new ObjectMapper().writeValueAsString(recipes);
             fileServiceRecipe.saveToFile(json);
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
 
-//    @Override
-// не могу понять что здесь не так, без этого кода запускается, с ним нет
-//    public void readFromFile() {
-//        String json = fileServiceRecipe.readFromFile();
-//        try {
-//            recipes = new ObjectMapper().readValue(json, new TypeReference<HashMap<Long, Recipe>>() {
-//
-//            });
-//        } catch (JsonProcessingException e) {
-//            throw new RuntimeException(e);
-//        }
-
-
-//    }
-
-    @Override
     public void readFromFile() {
+        try {
+            String json = fileServiceRecipe.readFromFile();
+            recipes = new ObjectMapper().readValue(json, new TypeReference<>() {
+
+            });
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
 
     }
+
 }

@@ -29,6 +29,7 @@ public class FileServiceIngredientImpl implements FileServiceIngredients {
         try {
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

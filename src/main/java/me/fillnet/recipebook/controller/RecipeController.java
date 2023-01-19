@@ -3,6 +3,7 @@ package me.fillnet.recipebook.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.fillnet.recipebook.model.Recipe;
+import me.fillnet.recipebook.service.exception.ExceptionWithChekingRecipes;
 import me.fillnet.recipebook.service.impl.RecipeServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,7 @@ public class RecipeController {
             summary = "Добавление нового рецепта",
             description = "добавление нового рецепта"
     )
-    public Recipe addNewRecipe(@RequestBody Recipe recipe) {
+    public Recipe addNewRecipe(@RequestBody Recipe recipe) throws ExceptionWithChekingRecipes {
         return this.recipeService.addNewRecipe(recipe);
     }
 
@@ -41,7 +42,7 @@ public class RecipeController {
             summary = "Изменение рецепта",
             description = "изменение рецепта по ID"
     )
-    public Recipe editRecipe(@PathVariable("id") String id, Recipe recipe) {
+    public Recipe editRecipe(@PathVariable("id") String id, Recipe recipe) throws ExceptionWithChekingRecipes {
         return this.recipeService.editRecipe(id, recipe);
     }
 

@@ -1,1 +1,1 @@
-{"0":{"name":"string","timeCooking":0,"ingredients":[{"title":"string","totalIngredients":0,"unit":"string"}],"step":["string"]}}
+{"0":{"name":"яичница","timeCooking":0,"ingredients":[{"title":"eggs","totalIngredients":1,"unit":"шт"}],"step":["пожарить"]}}
