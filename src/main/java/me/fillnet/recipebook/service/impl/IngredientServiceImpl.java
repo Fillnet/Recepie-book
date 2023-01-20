@@ -45,7 +45,6 @@ public class IngredientServiceImpl implements IngredientService {
         }
         return ingredient;
     }
-
     @Override
     public Ingredient updateIngredient(String id, Ingredient ingredient) throws ExceptionWithChekinIngredients {
         Ingredient serviceIngredient = ingredients.get(id);
