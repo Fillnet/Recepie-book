@@ -25,7 +25,7 @@ public class RecipeController {
             description = "получение списка рецептов"
     )
     public Collection<Recipe> getAllRecipe() {
-        return this.recipeService.getAllRecipe();
+        return recipeService.getAllRecipe();
     }
 
     @PostMapping
@@ -34,7 +34,7 @@ public class RecipeController {
             description = "добавление нового рецепта"
     )
     public Recipe addNewRecipe(@RequestBody Recipe recipe) throws ExceptionWithChekingRecipes {
-        return this.recipeService.addNewRecipe(recipe);
+        return recipeService.addNewRecipe(recipe);
     }
 
     @PutMapping("/{id}")
@@ -43,7 +43,7 @@ public class RecipeController {
             description = "изменение рецепта по ID"
     )
     public Recipe editRecipe(@PathVariable("id") String id, Recipe recipe) throws ExceptionWithChekingRecipes {
-        return this.recipeService.editRecipe(id, recipe);
+        return recipeService.editRecipe(id, recipe);
     }
 
     @DeleteMapping("/{id}")
@@ -52,6 +52,6 @@ public class RecipeController {
             description = "удаление рецепта по ID"
     )
     public Recipe removeRecipe(@PathVariable("id") String id) {
-        return this.recipeService.removeRecipe(id);
+        return recipeService.removeRecipe(id);
     }
 }

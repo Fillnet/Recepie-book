@@ -35,7 +35,7 @@ public class IngredientController {
             description = "добавление ингридиента"
     )
     public Ingredient addIngredient(@RequestBody Ingredient ingredient) throws ExceptionWithChekinIngredients {
-        return this.ingredientService.addNewIngredient(ingredient);
+        return ingredientService.addNewIngredient(ingredient);
     }
 
     @PutMapping("/{id}")
@@ -44,7 +44,7 @@ public class IngredientController {
             description = "обновление ингридиента по ID"
     )
     public Ingredient updateIngredient(@PathVariable("id") String id, @RequestBody Ingredient ingredient) throws ExceptionWithChekinIngredients {
-        return this.ingredientService.updateIngredient(id, ingredient);
+        return ingredientService.updateIngredient(id, ingredient);
     }
 
     @DeleteMapping("/{id}")
@@ -53,6 +53,6 @@ public class IngredientController {
             description = "удаление ингридиента по ID"
     )
     public Ingredient removeIngredientById(@PathVariable("id") String id) {
-        return this.ingredientService.removeIngredientById(id);
+        return ingredientService.removeIngredientById(id);
     }
 }

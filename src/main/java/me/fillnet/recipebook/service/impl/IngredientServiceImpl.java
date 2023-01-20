@@ -50,6 +50,7 @@ public class IngredientServiceImpl implements IngredientService {
     public Ingredient updateIngredient(String id, Ingredient ingredient) throws ExceptionWithChekinIngredients {
         Ingredient serviceIngredient = ingredients.get(id);
         if (serviceIngredient == null) {
+
             throw new ExceptionWithChekinIngredients("Нет такого ингредиента");
         }
         serviceIngredient.setTitle(ingredient.getTitle());
