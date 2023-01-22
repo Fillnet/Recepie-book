@@ -63,7 +63,7 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes.remove(id);
     }
 
-    private void saveToFile() {
+    public void saveToFile() {
         try {
             String json = new ObjectMapper().writeValueAsString(recipes);
             fileServiceRecipe.saveToFile(json);

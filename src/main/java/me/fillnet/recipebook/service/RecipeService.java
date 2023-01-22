@@ -7,6 +7,7 @@ import java.util.Collection;
 
 public interface RecipeService {
     void readFromFile();
+    void saveToFile();
 
     Collection<Recipe> getAllRecipe();
 
