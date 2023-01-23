@@ -1,10 +1,10 @@
-package me.fillnet.recepiebook;
+package me.fillnet.recipebook;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RecepieBookApplicationTests {
+class RecipeBookApplicationTests {
 
     @Test
     void contextLoads() {
