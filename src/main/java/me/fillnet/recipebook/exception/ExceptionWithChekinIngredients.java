@@ -1,4 +1,4 @@
-package me.fillnet.recipebook.service.exception;
+package me.fillnet.recipebook.exception;
 
 public class ExceptionWithChekinIngredients extends Exception{
     public ExceptionWithChekinIngredients(String message) {

@@ -3,8 +3,7 @@ package me.fillnet.recipebook.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.fillnet.recipebook.model.Ingredient;
-import me.fillnet.recipebook.service.exception.ExceptionWithChekinIngredients;
-import me.fillnet.recipebook.service.exception.ExceptionWithChekingRecipes;
+import me.fillnet.recipebook.exception.ExceptionWithChekinIngredients;
 import me.fillnet.recipebook.service.impl.IngredientServiceImpl;
 import org.springframework.web.bind.annotation.*;
 

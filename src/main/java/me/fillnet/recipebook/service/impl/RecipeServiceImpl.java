@@ -3,9 +3,10 @@ package me.fillnet.recipebook.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.fillnet.recipebook.exception.ExceptionWithOperationFile;
 import me.fillnet.recipebook.model.Recipe;
 import me.fillnet.recipebook.service.RecipeService;
-import me.fillnet.recipebook.service.exception.ExceptionWithChekingRecipes;
+import me.fillnet.recipebook.exception.ExceptionWithChekingRecipes;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -69,7 +70,7 @@ public class RecipeServiceImpl implements RecipeService {
             fileServiceRecipe.saveToFile(json);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new ExceptionWithOperationFile("Ошибка сохранения файла");
         }
     }
 
@@ -82,7 +83,7 @@ public class RecipeServiceImpl implements RecipeService {
             });
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new ExceptionWithOperationFile("Ошибка чтения из файла");
         }
 
 

@@ -1,7 +1,7 @@
 package me.fillnet.recipebook.service;
 
 import me.fillnet.recipebook.model.Ingredient;
-import me.fillnet.recipebook.service.exception.ExceptionWithChekinIngredients;
+import me.fillnet.recipebook.exception.ExceptionWithChekinIngredients;
 
 import java.util.Collection;
 

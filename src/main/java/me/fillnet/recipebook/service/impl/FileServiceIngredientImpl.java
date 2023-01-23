@@ -1,5 +1,6 @@
 package me.fillnet.recipebook.service.impl;
 
+import me.fillnet.recipebook.exception.ExceptionWithOperationFile;
 import me.fillnet.recipebook.service.FileServiceIngredients;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.nio.file.Path;
 public class FileServiceIngredientImpl implements FileServiceIngredients {
     @Value("${path.to.data.file}")
     private String dataFilePath;
-    @Value("${nameI.of.data.file}")
+    @Value("${namei.of.data.file}")
     private String dataFileName;
     @Override
     public boolean saveToFile(String json) {
@@ -22,7 +23,7 @@ public class FileServiceIngredientImpl implements FileServiceIngredients {
             Files.writeString(Path.of(dataFilePath, dataFileName), json);
             return true;
         } catch (IOException e) {
-            return false;
+            throw new ExceptionWithOperationFile("Ошибка сохранения файла");
         }
     }
     @Override
@@ -31,7 +32,7 @@ public class FileServiceIngredientImpl implements FileServiceIngredients {
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new ExceptionWithOperationFile("Ошибка чтения из файла");
         }
     }
 
