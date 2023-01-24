@@ -15,4 +15,7 @@ public class Recipe {
     private List<Ingredient> ingredients;
     private List<String> step;
 
+
 }
+
+

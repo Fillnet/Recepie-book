@@ -10,7 +10,7 @@ public interface IngredientService {
 
     Ingredient addNewIngredient(Ingredient ingredient) throws ExceptionWithChekinIngredients;
 
-    Ingredient updateIngredient(String id, Ingredient ingredient) throws  ExceptionWithChekinIngredients;
+    Ingredient updateIngredient(String id, Ingredient ingredient) throws ExceptionWithChekinIngredients;
 
     Ingredient removeIngredientById(String id);
 

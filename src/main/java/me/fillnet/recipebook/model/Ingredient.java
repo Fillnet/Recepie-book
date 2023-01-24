@@ -7,8 +7,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class Ingredient  {
+public class Ingredient {
     public String title;
     private int totalIngredients;
     private String unit;
+
+    @Override
+    public String toString() {
+        return title + ": " + totalIngredients + " " + unit;
+    }
 }

@@ -1,11 +1,19 @@
 package me.fillnet.recipebook.service.impl;
 
+import io.swagger.v3.oas.annotations.Operation;
 import me.fillnet.recipebook.exception.ExceptionWithOperationFile;
 import me.fillnet.recipebook.service.FileServiceRecipe;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -57,4 +65,35 @@ public class FileServiceRecipeImpl implements FileServiceRecipe {
             return false;
         }
     }
+
+    @GetMapping(value = "/export/recipe", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Сохранение рецепта в файл",
+            description = "Сохранение рецепта в файл"
+    )
+    public ResponseEntity<InputStreamResource> downloadDataFileRecipe() throws FileNotFoundException {
+        File dataFile = getDataFile();
+        if (dataFile.exists()) {
+            InputStreamResource resource = new InputStreamResource(new FileInputStream((dataFile)));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentLength(dataFile.length())
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"RecipeData.json\"")
+                    .body(resource);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+
+    }
+
+    @Override
+    public Path createTempFile(String suffix) {
+        try {
+            return Files.createTempFile(Path.of(dataFilePath), "tempFile", suffix);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
 }

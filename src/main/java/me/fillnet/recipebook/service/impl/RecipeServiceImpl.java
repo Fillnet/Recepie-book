@@ -10,7 +10,14 @@ import me.fillnet.recipebook.exception.ExceptionWithChekingRecipes;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
+
+//import static me.fillnet.recipebook.service.impl.FileServiceRecipeImpl.getPath;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -68,6 +75,7 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes.remove(id);
     }
 
+
     public void saveToFile() {
         try {
             String json = new ObjectMapper().writeValueAsString(recipes);
@@ -79,7 +87,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
 
-    public void readFromFile() {
+    public void readFromFile() throws ExceptionWithOperationFile {
         try {
             String json = fileServiceRecipe.readFromFile();
             recipes = new ObjectMapper().readValue(json, new TypeReference<>() {
@@ -93,4 +101,20 @@ public class RecipeServiceImpl implements RecipeService {
 
     }
 
+    @Override
+    public Path createRecipeFile() throws IOException {
+        Path path = fileServiceRecipe.createTempFile("recipes");
+        for (Recipe recipe : recipes.values()) {
+            try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+                writer.append(("Название рецепта: " + recipe.getName() + '\n' + '\n' +
+                        "Время приготовления: " + recipe.getTimeCooking() + '\n' + '\n' +
+                        "Ингредиенты: " + recipe.getIngredients() + '\n' + '\n' +
+                        "Инструкция приготовления: " + '\n' + '\n' + recipe.getStep() + '\n'));
+            }
+        }
+        return path;
+    }
+
 }
+
+

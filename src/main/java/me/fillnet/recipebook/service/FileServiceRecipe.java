@@ -1,16 +1,20 @@
 package me.fillnet.recipebook.service;
 
-import org.springframework.beans.factory.annotation.Value;
+import me.fillnet.recipebook.exception.ExceptionWithOperationFile;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public interface FileServiceRecipe {
-    @Value("${namer.of.data.file}")
     boolean saveToFile(String json);
 
-    String readFromFile();
+    String readFromFile() throws ExceptionWithOperationFile;
 
     File getDataFile();
 
     boolean cleanDataFile();
+
+    Path createTempFile(String suffix);
+
+
 }

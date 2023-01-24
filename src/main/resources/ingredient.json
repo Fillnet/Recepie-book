@@ -1,1 +1,22 @@
-{"eggs":{"title":"eggs","totalIngredients":1,"unit":"шт"}}
+{
+  "Творог": {
+    "title": "Творог",
+    "totalIngredients": 350,
+    "unit": "г."
+  },
+  "Куриное яйцо": {
+    "title": "Куриное яйцо",
+    "totalIngredients": 1,
+    "unit": "шт."
+  },
+  "Пшеничная мука": {
+    "title": "Пшеничная мука",
+    "totalIngredients": 6,
+    "unit": "ст.л."
+  },
+  "Сахар": {
+    "title": "Сахар",
+    "totalIngredients": 2,
+    "unit": "ст.л."
+  }
+}
