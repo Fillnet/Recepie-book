@@ -72,6 +72,23 @@ public class FilesController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
+    @Operation(
+            summary = "Загрузка Рецепта из файла",
+            description = "Загрузка Рецепта из файла"
+    )
+    @PostMapping(value = "/import/recipe", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> uploadDataFileRecipe(@RequestParam MultipartFile file) {
+        fileServiceRecipe.cleanDataFile();
+        File dataFileRecipe = fileServiceRecipe.getDataFile();
+        try (FileOutputStream fos = new FileOutputStream(dataFileRecipe)) {
+            IOUtils.copy(file.getInputStream(), fos);
+            return ResponseEntity.ok().build();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
 
     @Operation(
             summary = "Сохранить все рецепты",
